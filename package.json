@@ -1,0 +1,28 @@
+{
+  "name": "@jgtools/gridmap",
+  "version": "1.0.0",
+  "description": "Spatial grid that extends Map",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JGTools/GridMap.git"
+  },
+  "keywords": [
+    "javascript",
+    "typescript"
+  ],
+  "author": "Erik1001",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JGTools/GridMap/issues"
+  },
+  "homepage": "https://github.com/JGTools/GridMap#readme",
+  "devDependencies": {
+    "typedoc": "^0.23.23",
+    "typedoc-plugin-markdown": "^3.14.0"
+  }
+}

@@ -1,0 +1,68 @@
+<html>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.147.0/three.min.js" integrity="sha512-GWXLkqxMENYgBdQvA/lTeOV+R2auhasgKQxjMTWBFt3Z6GJVZ9owiyAMOzz0Wt6J1ri8bf/g2kHJV0uvWpJTuw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="module" defer>
+        // import GridMap from "../dist/index.js";
+        class Player {
+            static init(scene) {
+                const id = Math.floor(Math.random() * 100000).toString();
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+
+                const geo = new THREE.PlaneGeometry();
+                const mat = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+                const mesh = new THREE.Mesh(geo, mat);
+                scene.add(mesh);
+                const s = 2;
+                mesh.scale.set(s, s, s);
+                return { id, x, y, mesh };
+            }
+            static update(g, p, delta) {
+                p.mesh.position.set(1, 0, 0);
+            }
+        }
+        class Level {
+            static init(scene) {
+                const s = 1;
+                const divs = 5;
+                const geo = new THREE.PlaneGeometry(1, 1, divs, divs);
+                const mat = new THREE.MeshBasicMaterial({ color: 0x00ffff, wireframe: true });
+                const field = new THREE.Mesh(geo, mat);
+                field.position.set(0, 0, 0);
+                field.scale.set(100, 100, 1);
+                scene.add(field);
+
+                const player = Player.init(scene);
+                return { field, player };
+            }
+            static update(g, delta) {
+                Player.update(g, g.level.player, delta);
+            }
+        }
+        class Game {
+            static init() {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, 7 / 5, 0.1, 1000);
+                camera.position.set(0, 0, 100);
+                const renderer = new THREE.WebGLRenderer();
+                renderer.setSize(700, 500);
+                document.body.appendChild(renderer.domElement);
+                const clock = new THREE.Clock();
+
+                const level = Level.init(scene);
+                const g = { scene, camera, renderer, clock, level };
+                Game.update(g);
+            }
+            static update(g) {
+                const delta = g.clock.getDelta();
+                Level.update(g, delta);
+                g.renderer.render(g.scene, g.camera);
+                requestAnimationFrame(() => Game.update(g));
+            }
+        }
+        Game.init();
+    </script>
+</body>
+
+</html>
