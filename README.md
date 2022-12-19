@@ -8,7 +8,7 @@ Spatial grid that extends Map
 
 ## Features
 
-- :heavy_check_mark: All elements are stored on a 2D grid
+- :heavy_check_mark: Elements are stored on 2D grid
 - :heavy_check_mark: Filter nearby elements
 - :heavy_check_mark: Extends Map
 - :blue_square: Written in TypeScript
