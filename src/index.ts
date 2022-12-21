@@ -24,14 +24,14 @@ class Grid<ID> {
     }
     delete(id: ID) {
         const hash = this.#hashes.get(id);
-        if (!hash)
+        if (hash === undefined)
             return;
         this.#cells.get(hash)?.delete(id);
         this.#hashes.delete(id);
     }
     update(id: ID, x: number, y: number) {
         const ph = this.#hashes.get(id);
-        if (!ph)
+        if (ph === undefined)
             return;
         const [nx, ny] = this.#getCellPos(x, y);
         const nh = this.#getCellHash(nx, ny);
@@ -40,9 +40,9 @@ class Grid<ID> {
         this.delete(id);
         this.#setInner(id, nh);
     }
-    query(x: number, y: number, r: number): ID[] {
-        const [sx, sy] = this.#getCellPos(x - r, y - y);
-        const [ex, ey] = this.#getCellPos(x + r, y + r);
+    query(tx: number, ty: number, r: number): ID[] {
+        const [sx, sy] = this.#getCellPos(tx - r, ty - r);
+        const [ex, ey] = this.#getCellPos(tx + r, ty + r);
 
         const ids: ID[] = [];
         for (let y = sy; y <= ey; y++) {
