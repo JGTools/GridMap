@@ -13,12 +13,21 @@
   },
   "keywords": [
     "javascript",
-    "typescript"
+    "typescript",
+    "spatial-hash",
+    "spatial-hash-grid",
+    "shg"
   ],
   "author": "Erik1001",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/JGTools/GridMap/issues"
   },
-  "homepage": "https://github.com/JGTools/GridMap#readme"
+  "homepage": "https://github.com/JGTools/GridMap#readme",
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "@jgtools/shg": "^1.0.1"
+  }
 }

@@ -21,6 +21,11 @@ Spatial Hash Grid that extends Map
 npm i @jgtools/gridmap
 ```
 
+```javascript
+import GridMap from "@jgtools/gridmap";
+// ...
+```
+
 ### Using cdn
 
 ```html
