@@ -35,10 +35,6 @@ npm i @jgtools/gridmap
 ```javascript
 ```
 
-## Docs
-
-[Complete docs here](docs/classes/default.md)
-
 ## License
 
 MIT
