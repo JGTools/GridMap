@@ -9,7 +9,7 @@
                 const x = Math.random() * 100;
                 const y = Math.random() * 60;
 
-                const geo = new THREE.PlaneGeometry();
+                const geo = new THREE.PlaneGeometry(2, 2);
                 const mat = new THREE.MeshBasicMaterial();
                 const mesh = new THREE.Mesh(geo, mat);
                 scene.add(mesh);
@@ -17,15 +17,21 @@
                 mesh.position.set(x, y, 0);
                 mesh.material.color.set(0xffffff);
 
-                return { id, x, y, mesh };
+                return { id, x, y, s: Math.random() * 10, a: Math.random() * 6, mesh };
             }
             static update(g, p, delta) {
-                p.x += delta * 10;
-                p.y += delta * 10;
+                p.x += delta * p.s * Math.cos(p.a);
+                p.y += delta * p.s * Math.sin(p.a);
+
                 if (p.x > g.level.field.scale.x)
                     p.x = 0;
+                if (p.x < 0)
+                    p.x = g.level.field.scale.x;
                 if (p.y > g.level.field.scale.y)
                     p.y = 0;
+                if (p.y < 0)
+                    p.y = g.level.field.scale.y;
+
                 p.mesh.position.set(p.x, p.y, 0);
                 p.mesh.material.color.set(0xffffff);
                 g.level.players.update(p.id, p.x, p.y);
@@ -51,15 +57,17 @@
                 const mat2 = new THREE.MeshBasicMaterial({ color: 0x88ff00, wireframe: true });
                 const view = new THREE.Mesh(geo2, mat2);
                 scene.add(view);
-                setInterval(() => {
-                    view.position.set(cw * Math.random(), ch * Math.random(), 1);
-                    const s = Math.random() * 30;
-                    view.scale.set(s, s, 1);
-                }, 3000);
-                for (let i = 0; i < 1000; i++) {
+
+                for (let i = 0; i < 60; i++) {
                     const p = Player.init(scene, i.toString());
                     players.set(p.id, p, p.x, p.y);
                 }
+
+                setInterval(() => {
+                    view.position.set(players.get("0").x, players.get("0").y);
+                    const s = 30;
+                    view.scale.set(s, s, 1);
+                }, 20);
 
                 return { field, view, players };
             }
