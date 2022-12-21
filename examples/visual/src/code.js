@@ -31,7 +31,7 @@ class Entity {
 
         e.mesh.position.set(e.x, e.y, 0);
         e.mesh.material.color.set(0xffffff);
-        g.level.players.update(e.id, e.x, e.y);
+        g.level.entities.update(e.id, e.x, e.y);
     }
 }
 class Level {
