@@ -26,18 +26,33 @@ import GridMap from "@jgtools/gridmap";
 // ...
 ```
 
-### Using cdn
-
-```html
-<script type="module">
-    import GridMap from "https://cdn.jsdelivr.net/npm/@jgtools/gridmap@1.0.0/dist/index.min.js";
-    // ...
-</script>
-```
-
 ## Usage
 
 ```javascript
+import GridMap from "@jgtools/gridmap";
+
+const entities = new GridMap(100, 60, 10);
+
+const entity = { id: "1", x: 0, y: 0, name: "Bob" };
+entities.set(entity.id, entity, entity.x, entity.y);
+
+const entity2 = { id: "2", x: 15, y: 15, name: "Joe" };
+entities.set(entity2.id, entity2, entity2.x, entity2.y);
+
+console.log("nearby entities: ", gm.query(20, 20, 10));
+
+entities.update("1", 15, 20);
+console.log("nearby entities: ", gm.query(20, 20, 10));
+
+entities.delete("2");
+console.log("nearby entities: ", gm.query(20, 20, 10));
+
+console.log("amount of entities:", gm.size);
+console.log("entity with id 1: ", gm.get("1"));
+
+entities.clear();
+console.log("nearby entities: ", gm.query(20, 20, 10));
+console.log("amount of entities after clear:", gm.size);
 ```
 
 ## License

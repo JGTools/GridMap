@@ -28,6 +28,6 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@jgtools/shg": "^1.0.1"
+    "@jgtools/shg": "^1.0.4"
   }
 }

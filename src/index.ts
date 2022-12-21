@@ -23,6 +23,10 @@ export default class GridMap<K, V> extends Map {
         this.#shg.delete(id);
         return super.delete(id);
     }
+    clear() {
+        this.#shg.clear();
+        return super.clear();
+    }
     update(id: K, x: number, y: number) {
         this.#shg.update(id, x, y);
     }
