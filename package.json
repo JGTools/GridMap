@@ -1,7 +1,7 @@
 {
   "name": "@jgtools/gridmap",
   "version": "1.0.0",
-  "description": "Spatial hash grid that extends Map",
+  "description": "Spatial Hash Grid that extends Map",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

@@ -66,7 +66,7 @@ class Grid<ID> {
 }
 
 /**
- * GridMap - Spatial hash grid that extends Map
+ * GridMap - Spatial Hash Grid that extends Map
  */
 export default class GridMap<K, V> extends Map {
     #grid;
