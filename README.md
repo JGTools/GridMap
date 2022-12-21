@@ -4,7 +4,7 @@
 [![npm](https://img.shields.io/npm/dm/@jgtools/gridmap)](https://www.npmjs.com/package/@jgtools/gridmap)
 [![GitHub](https://img.shields.io/github/license/jgtools/gridmap)](https://github.com/git/git-scm.com/blob/main/MIT-LICENSE.txt)
 
-Spatial Hash Grid that extends Map
+2D Spatial Hash Grid that extends Map
 
 ## Features
 
