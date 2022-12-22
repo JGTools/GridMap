@@ -37,18 +37,30 @@ class Entity {
 class Level {
     static init(scene, camera) {
         const cw = 100;
-        const ch = 60;
-        const cs = 10;
+        const ch = 100;
+        const cs = 25;
         const entities = new GridMap(cw, ch, cs);
 
-        const geo = new THREE.PlaneGeometry(1, 1, cw / cs, ch / cs);
-        const mat = new THREE.MeshBasicMaterial({ color: 0x00ffff, wireframe: true });
+        const geo = new THREE.PlaneGeometry();
+        const mat = new THREE.MeshBasicMaterial({ color: 0x00ffff, opacity: 0.2, transparent: true });
+        const matB = new THREE.MeshBasicMaterial({ color: 0x00ff00, opacity: 0.2, transparent: true });
         const field = new THREE.Mesh(geo, mat);
         field.position.set(cw / 2, ch / 2, 1);
         camera.position.x = field.position.x;
         camera.position.y = field.position.y;
         field.scale.set(cw, ch, 1);
         scene.add(field);
+
+        const yb = Math.floor(ch / cs) + 1;
+        const xb = Math.floor(cw / cs) + 1;
+        for (let y = 0; y < yb; y++) {
+            for (let x = 0; x < xb; x++) {
+                const b = new THREE.Mesh(geo, matB);
+                b.position.set(cs * x + cs / 2, cs * y + cs / 2, 1);
+                b.scale.set(cs - 1, cs - 1, 1);
+                scene.add(b);
+            }
+        }
 
         const geo2 = new THREE.PlaneGeometry();
         const mat2 = new THREE.MeshBasicMaterial({ color: 0x88ff00, wireframe: true });
@@ -84,10 +96,14 @@ class Level {
 class Game {
     static init() {
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, 7 / 5, 0.1, 1000);
+
+        const w = document.body.clientWidth;
+        const h = document.body.clientHeight;
+
+        const camera = new THREE.PerspectiveCamera(75, w / h, 0.1, 1000);
         camera.position.set(0, 0, 100);
         const renderer = new THREE.WebGLRenderer();
-        renderer.setSize(700, 500);
+        renderer.setSize(w, h);
         document.body.appendChild(renderer.domElement);
         const clock = new THREE.Clock();
 
